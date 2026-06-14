@@ -126,10 +126,17 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 STATIC_URL = 'static/'
 
-STATIC_URL = '/static/'
+from django.conf import settings
+from django.conf.urls.static import static
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'main' / 'static',
-]
+urlpatterns += static(
+    settings.STATIC_URL,
+    document_root=settings.STATIC_ROOT
+)
+from django.conf import settings
+from django.conf.urls.static import static
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+urlpatterns += static(
+    settings.STATIC_URL,
+    document_root=settings.STATIC_ROOT
+)
