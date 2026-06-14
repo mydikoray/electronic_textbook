@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="auth-box">
+    <h1>Катталуу</h1>
+    <p>Жаңы аккаунт түзүңүз</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-fields">
+            {{ form.as_p }}
+        </div>
+
+        <button type="submit" class="btn btn-blue auth-btn">Катталуу</button>
+    </form>
+
+    <div class="auth-bottom">
+        <span>Аккаунтуңуз барбы?</span>
+        <a href="{% url 'login' %}">Кирүү</a>
+    </div>
+</div>
+
+{% endblock %}

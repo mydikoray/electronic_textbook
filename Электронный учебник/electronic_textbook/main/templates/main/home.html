@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<section class="home-hero">
+    <div>
+        <h1 class="hero-title">
+            "Маалыматтар системасы" предмети боюнча электрондук окуу куралы
+        </h1>
+
+        <p class="hero-text">
+            Бул платформа сизге теориялык материалдарды үйрөнүп,
+            лабораториялык иштерди аткарып, тесттер аркылуу билимиңизди
+            текшерүүгө жардам берет.
+        </p>
+
+        <div class="hero-actions">
+            <a href="{% url 'lectures' %}" class="btn btn-blue">Окууну баштоо</a>
+           
+        </div>
+    </div>
+
+    <div class="hero-illustration">
+        <div class="laptop-art">
+            <div class="laptop-screen"></div>
+            <div class="laptop-base"></div>
+            <div class="server"></div>
+        </div>
+    </div>
+</section>
+
+<section class="home-cards">
+
+    <a href="{% url 'lectures' %}" class="feature-card home-card-link">
+        <div class="feature-icon icon-blue">▣</div>
+        <div>
+            <h3>Теориялык материалдар</h3>
+            <p>Толук лекциялар жана түшүндүрмөлөр</p>
+        </div>
+    </a>
+
+    <a href="{% url 'laboratories' %}" class="feature-card home-card-link">
+        <div class="feature-icon icon-green">♙</div>
+        <div>
+            <h3>Лабораториялык иштер</h3>
+            <p>Практикалык тапшырмалар жана мисалдар</p>
+        </div>
+    </a>
+
+    <a href="{% url 'tests' %}" class="feature-card home-card-link">
+        <div class="feature-icon icon-orange">▤</div>
+        <div>
+            <h3>Тесттер жана баалоо</h3>
+            <p>Билимиңизди текшериңиз</p>
+        </div>
+    </a>
+
+    <a href="{% url 'profile' %}" class="feature-card home-card-link">
+        <div class="feature-icon icon-red">▧</div>
+        <div>
+            <h3>Прогресс көзөмөлү</h3>
+            <p>Окуу жыйынтыгын көзөмөлдөңүз</p>
+        </div>
+    </a>
+
+</section>
+
+{% endblock %}

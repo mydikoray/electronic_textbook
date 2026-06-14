@@ -1,0 +1,101 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+
+    <h1>
+        Презентациялар
+    </h1>
+
+    <small>
+        Маалыматтык системалар боюнча презентациялык материалдар
+    </small>
+
+</div>
+
+
+{% if presentations %}
+
+<div class="presentation-grid">
+
+    {% for item in presentations %}
+
+    <a href="{% url 'presentation_file_view' item.id %}"
+       class="presentation-card">
+
+        <div class="ppt-icon">
+            PPT
+        </div>
+
+
+        <h3>
+            {{ item.title }}
+        </h3>
+
+
+        <p>
+
+            {% if item.description %}
+
+                ТЕМА:
+                {{ item.description }}
+
+            {% else %}
+
+                Тема көрсөтүлгөн эмес
+
+            {% endif %}
+
+        </p>
+
+
+        <div class="presentation-footer">
+
+            <small>
+
+                {% if item.slides_count %}
+
+                    {{ item.slides_count }} слайд
+
+                {% else %}
+
+                    Презентация
+
+                {% endif %}
+
+            </small>
+
+
+            <span class="view-btn">
+
+                👁
+
+            </span>
+
+        </div>
+
+    </a>
+
+    {% endfor %}
+
+</div>
+
+
+{% else %}
+
+<div class="empty-box">
+
+    <h3>
+        Азырынча презентация жок
+    </h3>
+
+    <p>
+        Презентацияларды Django админка аркылуу кошуңуз.
+    </p>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

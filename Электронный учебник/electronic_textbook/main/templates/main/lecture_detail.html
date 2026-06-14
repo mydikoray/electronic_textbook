@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <small>{{ lecture.section }}</small>
+    <h1>{{ lecture.title }}</h1>
+</div>
+
+<div class="detail-card">
+    <div class="lecture-content">
+        {{ lecture.content|linebreaks }}
+    </div>
+        {% if lecture.file %}
+        <div class="file-download-box">
+            <h3>Лекциянын файлы</h3>
+            <a href="{% url 'lecture_file_view' lecture.id %}" class="btn btn-blue">
+            Сайттан ачуу
+        </a>
+
+        <a href="{{ lecture.file.url }}" download class="btn btn-light">
+            Жүктөп алуу
+        </a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="page-bottom">
+    <a href="{% url 'lectures' %}" class="btn btn-light">← Лекцияларга кайтуу</a>
+    <a href="{% url 'tests' %}" class="btn btn-blue">Тестке өтүү →</a>
+</div>
+
+{% endblock %}

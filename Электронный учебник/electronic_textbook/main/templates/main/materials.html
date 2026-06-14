@@ -1,0 +1,104 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <h1>Видеосабактар</h1>
+</div>
+
+<div class="tabs">
+    <a href="{% url 'materials' %}" class="active">
+        Видео жана YouTube материалдар
+    </a>
+</div>
+
+{% if materials %}
+
+<div class="material-list">
+
+    {% for material in materials %}
+
+        {% if material.file_type == 'youtube' and material.youtube_url %}
+
+        <a href="{{ material.youtube_url }}"
+           target="_blank"
+           class="material-item">
+
+            <div class="file-icon video">
+                YT
+            </div>
+
+            <div class="material-info">
+                <h3>{{ material.title }}</h3>
+                <p>YouTube видео</p>
+            </div>
+
+            <div class="download-link">
+                ▶
+            </div>
+
+        </a>
+
+        {% elif material.file %}
+
+        <a href="{% url 'material_file_stream' material.id %}"
+           class="material-item">
+
+            {% if material.file_type == 'pdf' %}
+                <div class="file-icon pdf">PDF</div>
+
+            {% elif material.file_type == 'video' %}
+                <div class="file-icon video">MP4</div>
+
+            {% elif material.file_type == 'ppt' %}
+                <div class="file-icon ppt">PPT</div>
+
+            {% else %}
+                <div class="file-icon blue">FILE</div>
+            {% endif %}
+
+            <div class="material-info">
+
+                <h3>
+                    {{ material.title }}
+                </h3>
+
+                <p>
+                    {{ material.get_file_type_display }} файлы
+
+                    {% if material.file_size %}
+                        • {{ material.file_size }}
+                    {% endif %}
+                </p>
+
+            </div>
+
+            <div class="download-link">
+                👁
+            </div>
+
+        </a>
+
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty-box">
+
+    <h3>
+        Азырынча материал жок
+    </h3>
+
+    <p>
+        Материалдарды Django админка аркылуу кошуңуз.
+    </p>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

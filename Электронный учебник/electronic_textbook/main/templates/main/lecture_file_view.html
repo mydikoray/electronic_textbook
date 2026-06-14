@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <small>{{ lecture.section }}</small>
+    <h1>{{ lecture.title }}</h1>
+</div>
+
+{% if lecture.file %}
+    <div class="viewer-card">
+        <iframe src="{% url 'lecture_pdf_stream' lecture.id %}" class="file-viewer"></iframe>
+    </div>
+
+    <div class="page-bottom">
+        <a href="{% url 'lecture_detail' lecture.id %}" class="btn btn-light">← Артка</a>
+        <a href="{% url 'lecture_pdf_stream' lecture.id %}" target="_blank" class="btn btn-blue">Жаңы бетте ачуу</a>
+        <a href="{{ lecture.file.url }}" download class="btn btn-light">Файлды жүктөө</a>
+    </div>
+{% else %}
+    <div class="empty-box">
+        <h3>Файл кошулган эмес</h3>
+        <p>Бул лекцияга админка аркылуу PDF файл кошуңуз.</p>
+    </div>
+{% endif %}
+
+{% endblock %}

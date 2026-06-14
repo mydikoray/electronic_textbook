@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <h1>{{ material.title }}</h1>
+</div>
+
+<div class="viewer-box">
+
+    <video width="100%"
+           controls
+           style="
+           border-radius:20px;
+           box-shadow:0 10px 30px rgba(0,0,0,.15);
+           ">
+
+        <source src="{% url 'material_file_stream' material.id %}"
+                type="video/mp4">
+
+        Сиздин браузер видеону колдобойт.
+
+    </video>
+
+    <div style="margin-top:25px">
+
+        <a href="{{ material.file.url }}"
+           download
+           class="download-btn">
+
+            ⬇ Көчүрүп алуу
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

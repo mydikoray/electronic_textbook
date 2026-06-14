@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="role-box">
+    <h1>Кош келиңиз, {{ request.user.username }}!</h1>
+    <p>Сайтка кандай роль менен киресиз?</p>
+
+    <div class="role-cards">
+
+        <a href="{% url 'profile' %}" class="role-card">
+            <span>🎓</span>
+            <h2>Студент</h2>
+            <p>Лекция окуу, тест тапшыруу жана материалдарды көрүү</p>
+        </a>
+
+        {% if request.user.is_staff %}
+        <a href="{% url 'admin_panel' %}" class="role-card teacher">
+            <span>👨‍🏫</span>
+            <h2>Мугалим</h2>
+            <p>Лекция, тест, презентация жана материалдарды башкаруу</p>
+        </a>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

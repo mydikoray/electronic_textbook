@@ -1,0 +1,145 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="profile-top">
+    <div class="avatar">
+        {{ request.user.username|first|upper }}
+    </div>
+
+    <div class="profile-info">
+        <h2>{{ request.user.username }}</h2>
+
+        {% if request.user.is_staff %}
+            <p>Мугалим аккаунту</p>
+        {% else %}
+            <p>Студент аккаунту</p>
+        {% endif %}
+
+        {% if request.user.email %}
+            <small>{{ request.user.email }}</small>
+        {% else %}
+            <small>Email кошулган эмес</small>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'logout' %}" class="btn btn-light">Чыгуу</a>
+</div>
+
+
+{% if request.user.is_staff %}
+
+<div class="teacher-profile-box">
+    <h3>Мугалим үчүн башкаруу панели</h3>
+    <p>Бул аккаунт окуу материалдарын кошуу жана башкаруу үчүн колдонулат.</p>
+
+    <div class="profile-stats">
+        <div class="stat-card">
+            <b>{{ lectures_count }}</b>
+            <p>Лекциялар</p>
+        </div>
+
+        <div class="stat-card">
+            <b>{{ laboratories_count }}</b>
+            <p>Лабораториялар</p>
+        </div>
+
+        <div class="stat-card">
+            <b>{{ presentations_count }}</b>
+            <p>Презентациялар</p>
+        </div>
+
+        <div class="stat-card">
+            <b>{{ materials_count }}</b>
+            <p>Видео сабактар</p>
+        </div>
+    </div>
+</div>
+
+<div class="profile-actions">
+    <a href="{% url 'admin_panel' %}">
+        <span>👨‍🏫</span>
+        <div>
+            <h3>Мугалим панели</h3>
+            <p>Материалдарды кошуу жана башкаруу</p>
+        </div>
+    </a>
+
+    <a href="/django-admin/">
+        <span>⚙️</span>
+        <div>
+            <h3>Django админка</h3>
+            <p>Толук башкаруу бөлүмү</p>
+        </div>
+    </a>
+</div>
+
+{% else %}
+
+<div class="progress-card">
+    <h3>Окуу прогресси</h3>
+
+    <div class="progress-row">
+        <span>Маалыматтык системалар</span>
+        <span>75%</span>
+    </div>
+
+    <div class="progress-line">
+        <div class="progress-fill" style="width: 75%;"></div>
+    </div>
+</div>
+
+<div class="profile-stats">
+    <div class="stat-card">
+        <b>12 / 16</b>
+        <p>Өтүлгөн лекциялар</p>
+    </div>
+
+    <div class="stat-card">
+        <b>6 / 10</b>
+        <p>Аткарылган лабораториялар</p>
+    </div>
+
+    <div class="stat-card">
+        <b class="green">85%</b>
+        <p>Тесттердин жыйынтыгы</p>
+    </div>
+</div>
+
+<div class="profile-actions">
+    <a href="{% url 'lectures' %}">
+        <span>📘</span>
+        <div>
+            <h3>Лекцияларды окуу</h3>
+            <p>Теориялык материалдарды улантуу</p>
+        </div>
+    </a>
+
+    <a href="{% url 'laboratories' %}">
+        <span>🧪</span>
+        <div>
+            <h3>Лабораториялык иштер</h3>
+            <p>Практикалык тапшырмаларды аткаруу</p>
+        </div>
+    </a>
+
+    <a href="{% url 'tests' %}">
+        <span>✅</span>
+        <div>
+            <h3>Тест тапшыруу</h3>
+            <p>Билимди текшерүү жана баалоо</p>
+        </div>
+    </a>
+
+    <a href="{% url 'materials' %}">
+        <span>📁</span>
+        <div>
+            <h3>Кошумча материалдар</h3>
+            <p>PDF, видео жана презентациялар</p>
+        </div>
+    </a>
+</div>
+
+{% endif %}
+
+{% endblock %}

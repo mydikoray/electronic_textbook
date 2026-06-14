@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <h1>Лабораториялык иштер</h1>
+    <small>Практикалык тапшырмалар жана мисалдар</small>
+</div>
+
+{% if laboratories %}
+
+    <div class="lab-list">
+
+        {% for lab in laboratories %}
+        <div class="lab-card">
+            <h2>{{ lab.title }}</h2>
+
+            <div class="task-box">
+                <b>Тапшырма:</b>
+                <p>{{ lab.task|linebreaks }}</p>
+            </div>
+
+            {% if lab.code_example %}
+            <h3 class="section-title">Кыскача түшүндүрмө:</h3>
+            <pre class="code-box">{{ lab.code_example }}</pre>
+            {% endif %}
+
+            {% if lab.solution %}
+            <details class="solution-box">
+                <summary>Чечимди көрүү</summary>
+                <p>{{ lab.solution|linebreaks }}</p>
+            </details>
+            {% endif %}
+            {% if lab.file %}
+<div class="file-download-box">
+    <h3>Лабораториялык иштин файлы</h3>
+{% if lab.file %}
+
+<div class="file-download-box">
+
+    <h3>Лабораториялык иштин файлы</h3>
+
+    <a href="{% url 'laboratory_file_view' lab.id %}"
+       class="btn btn-blue">
+
+        📖 Сайттан ачуу
+
+    </a>
+
+    <a href="{{ lab.file.url }}"
+       download
+       class="btn btn-light">
+
+        ⬇ Жүктөп алуу
+
+    </a>
+
+</div>
+
+{% endif %}
+</div>
+{% endif %}
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="empty-box">
+        <h3>Азырынча лабораториялык иш жок</h3>
+        <p>Лабораториялык иштерди Django админка аркылуу кошуңуз.</p>
+    </div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,127 @@
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <h1>Мугалим панели</h1>
+    <small>
+        Окуу материалдарын башкаруу жана жаңы маалымат кошуу бөлүмү
+    </small>
+</div>
+
+<div class="admin-stats">
+
+    <div class="admin-stat">
+        <p>Лекциялар</p>
+        <b>{{ lectures_count }}</b>
+    </div>
+
+    <div class="admin-stat">
+        <p>Лабораториялар</p>
+        <b>{{ laboratories_count }}</b>
+    </div>
+
+    <div class="admin-stat">
+        <p>Презентациялар</p>
+        <b>{{ presentations_count }}</b>
+    </div>
+
+    <div class="admin-stat">
+        <p>Видеосабактар</p>
+        <b>{{ materials_count }}</b>
+    </div>
+
+    <div class="admin-stat">
+        <p>Тесттер</p>
+        <b>{{ tests_count }}</b>
+    </div>
+
+</div>
+
+
+<div class="panel-box">
+
+    <h3 class="panel-title">
+        Тез аракеттер
+    </h3>
+
+    <div class="quick-actions">
+
+        <a href="/django-admin/main/lecture/add/">
+            ▣ Лекция кошуу
+        </a>
+
+        <a href="/django-admin/main/laboratory/add/">
+            ♙ Лаборатория кошуу
+        </a>
+
+        <a href="/django-admin/main/presentation/add/">
+            ▥ Презентация кошуу
+        </a>
+
+        <a href="/django-admin/main/material/add/">
+            ↓ Видеосабак жүктөө
+        </a>
+
+        <a href="/django-admin/main/test/add/">
+            ▤ Тест кошуу
+        </a>
+
+        <a href="/django-admin/main/question/add/">
+            ✎ Суроо кошуу
+        </a>
+
+        <a href="/django-admin/main/test/">
+            ✓ Тесттерди көрүү
+        </a>
+
+        <a href="/django-admin/main/question/">
+            ✓ Суроолорду көрүү
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<div class="panel-box">
+
+    <h3 class="panel-title">
+        Башкаруу
+    </h3>
+
+    <div class="quick-actions">
+
+        <a href="/django-admin/main/lecture/">
+            Лекцияларды башкаруу
+        </a>
+
+        <a href="/django-admin/main/laboratory/">
+            Лабораторияларды башкаруу
+        </a>
+
+        <a href="/django-admin/main/presentation/">
+            Презентацияларды башкаруу
+        </a>
+
+        <a href="/django-admin/main/material/">
+            Видеосабактарды башкаруу
+        </a>
+
+        <a href="/django-admin/main/test/">
+            Тесттерди башкаруу
+        </a>
+
+        <a href="/django-admin/main/question/">
+            Суроолорду башкаруу
+        </a>
+
+    </div>
+
+</div>
+    
+</div>
+{% endblock %}
+```

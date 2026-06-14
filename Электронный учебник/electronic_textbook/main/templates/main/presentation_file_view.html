@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+
+    <h1>{{ presentation.title }}</h1>
+
+</div>
+
+<div class="viewer-box">
+
+    <iframe
+        src="{% url 'presentation_pdf_stream' presentation.id %}"
+        width="100%"
+        height="900px"
+        style="
+            border:none;
+            border-radius:20px;
+            background:#fff;
+        ">
+
+    </iframe>
+
+    <br><br>
+
+    <a href="{{ presentation.file.url }}"
+       download
+       class="download-btn">
+
+        ⬇ Көчүрүп алуу
+
+    </a>
+
+</div>
+
+{% endblock %}

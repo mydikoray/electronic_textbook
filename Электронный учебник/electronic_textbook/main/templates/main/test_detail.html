@@ -1,0 +1,366 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+
+    <small class="test-subtitle">
+        Тестирлөө бөлүмү
+    </small>
+
+    <h1 class="test-title">
+        {{ test.title }}
+    </h1>
+
+</div>
+
+
+{% if finished %}
+
+<div class="result-box">
+
+{% if percent >= 60 %}
+
+<h2>✅ Тест ийгиликтүү аяктады</h2>
+
+<p class="result-text">
+
+Куттуктайбыз!
+
+Сиз тесттен ийгиликтүү өттүңүз.
+
+</p>
+
+{% else %}
+
+<h2>❌ Тесттен өтө алган жоксуз</h2>
+
+<p class="result-text">
+
+Упай жетишсиз.
+
+Кайра тесттен өтүп көрүңүз.
+
+</p>
+
+<a href="" class="btn-retry">
+
+Кайра тест тапшыруу
+
+</a>
+
+{% endif %}
+
+<div class="result-score">
+
+Упай:
+
+<strong>
+
+{{ score }}
+
+/
+
+{{ total }}
+
+</strong>
+
+</div>
+
+<div class="percent-box">
+
+{{ percent }}%
+
+</div>
+
+</div>
+
+{% endif %}
+
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+
+{% for question in questions %}
+
+<div class="question-card">
+
+<h3 class="question-title">
+
+{{ forloop.counter }}.
+
+{{ question.question }}
+
+</h3>
+
+
+
+<!-- A -->
+
+<label class="answer
+
+{% if finished %}
+
+{% if question.user_answer == 'A' and question.correct_answer == 'A' %}
+
+correct
+
+{% elif question.user_answer == 'A' and question.correct_answer != 'A' %}
+
+wrong
+
+{% elif question.correct_answer == 'A' %}
+
+correct
+
+{% endif %}
+
+{% endif %}
+
+">
+
+<input
+
+type="radio"
+
+name="question_{{ question.id }}"
+
+value="A"
+
+{% if question.user_answer == 'A' %}
+
+checked
+
+{% endif %}
+
+{% if finished %}
+
+disabled
+
+{% endif %}
+
+>
+
+<span>
+
+A)
+
+{{ question.option_a }}
+
+</span>
+
+</label>
+
+
+
+
+<!-- B -->
+
+<label class="answer
+
+{% if finished %}
+
+{% if question.user_answer == 'B' and question.correct_answer == 'B' %}
+
+correct
+
+{% elif question.user_answer == 'B' and question.correct_answer != 'B' %}
+
+wrong
+
+{% elif question.correct_answer == 'B' %}
+
+correct
+
+{% endif %}
+
+{% endif %}
+
+">
+
+<input
+
+type="radio"
+
+name="question_{{ question.id }}"
+
+value="B"
+
+{% if question.user_answer == 'B' %}
+
+checked
+
+{% endif %}
+
+{% if finished %}
+
+disabled
+
+{% endif %}
+
+>
+
+<span>
+
+B)
+
+{{ question.option_b }}
+
+</span>
+
+</label>
+
+
+
+
+
+<!-- C -->
+
+<label class="answer
+
+{% if finished %}
+
+{% if question.user_answer == 'C' and question.correct_answer == 'C' %}
+
+correct
+
+{% elif question.user_answer == 'C' and question.correct_answer != 'C' %}
+
+wrong
+
+{% elif question.correct_answer == 'C' %}
+
+correct
+
+{% endif %}
+
+{% endif %}
+
+">
+
+<input
+
+type="radio"
+
+name="question_{{ question.id }}"
+
+value="C"
+
+{% if question.user_answer == 'C' %}
+
+checked
+
+{% endif %}
+
+{% if finished %}
+
+disabled
+
+{% endif %}
+
+>
+
+<span>
+
+C)
+
+{{ question.option_c }}
+
+</span>
+
+</label>
+
+
+
+
+
+<!-- D -->
+
+<label class="answer
+
+{% if finished %}
+
+{% if question.user_answer == 'D' and question.correct_answer == 'D' %}
+
+correct
+
+{% elif question.user_answer == 'D' and question.correct_answer != 'D' %}
+
+wrong
+
+{% elif question.correct_answer == 'D' %}
+
+correct
+
+{% endif %}
+
+{% endif %}
+
+">
+
+<input
+
+type="radio"
+
+name="question_{{ question.id }}"
+
+value="D"
+
+{% if question.user_answer == 'D' %}
+
+checked
+
+{% endif %}
+
+{% if finished %}
+
+disabled
+
+{% endif %}
+
+>
+
+<span>
+
+D)
+
+{{ question.option_d }}
+
+</span>
+
+</label>
+
+
+</div>
+
+{% endfor %}
+
+
+{% if not finished %}
+
+<button type="submit" class="btn-finish">
+
+<span>
+
+Тестти бүтүрүү
+
+</span>
+
+<i>
+
+➜
+
+</i>
+
+</button>
+
+{% endif %}
+
+
+</form>
+
+{% endblock %}

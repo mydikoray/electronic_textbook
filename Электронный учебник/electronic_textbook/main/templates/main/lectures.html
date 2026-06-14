@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <h1>Лекциялар</h1>
+     <small>Теориялык материалдар</small>
+</div>
+
+{% if lectures %}
+
+<div class="lecture-list">
+
+    {% for lecture in lectures %}
+    <a href="{% url 'lecture_detail' lecture.id %}" class="lecture-card lecture-link">
+        <div class="lecture-top">
+            <div>
+                <small>{{ lecture.section }}</small>
+                <h2>{{ lecture.title }}</h2>
+            </div>
+
+            <span>№{{ forloop.counter }}</span>
+        </div>
+
+        <p>{{ lecture.content|truncatewords:35 }}</p>
+
+        <div class="read-more">
+            Толук окуу →
+        </div>
+    </a>
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty-box">
+    <h3>Азырынча лекция жок</h3>
+    <p>Лекцияларды Django админка аркылуу кошуңуз.</p>
+</div>
+
+{% endif %}
+
+{% endblock %}

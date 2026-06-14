@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="test-top">
+
+    <h1>Тесттер</h1>
+
+    <small>
+        Алган билимди бышыктоо үчүн суроолор
+    </small>
+
+</div>
+
+
+<div class="tests-grid">
+
+{% for test in tests %}
+
+    <div class="test-card">
+
+        <div class="test-icon">
+            📘
+        </div>
+
+        <h2>
+
+            {{ test.title }}
+
+        </h2>
+
+       <a href="{% url 'test_detail' test.id %}" class="btn-test">
+    Тестти ачуу
+</a>
+
+    </div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
